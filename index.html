@@ -235,38 +235,80 @@
     </div>
 
     <script>
-        const answers = [
-            "The stars align in your favor. Something wonderful is coming your way.",
-            "A surprise awaits around the next corner. Keep your eyes open.",
-            "The universe has a plan for you greater than you can imagine.",
-            "Your next step will change everything. Trust your intuition.",
-            "Something you've been waiting for is closer than you think.",
-            "The answer you seek... is within yourself.",
-            "A mysterious stranger will bring an unexpected opportunity.",
-            "Your courage will be rewarded in the most surprising way.",
-            "The path less traveled leads to extraordinary destinations.",
-            "What you give away returns to you multiplied.",
-            "A dream you've forgotten holds the key to your future.",
-            "The best things in life are still to come.",
-            "Your words today will shape tomorrow's story.",
-            "Something old becomes new again in your life.",
-            "The universe is conspiring to help you succeed.",
-            "A chance meeting will alter your trajectory forever.",
-            "Your patience will be rewarded beyond expectations.",
-            "The magic you're seeking is already within you.",
-            "An adventure calls to you - will you answer?",
-            "Your next decision will lead to unexpected joy.",
-            "Something broken in your past is becoming whole.",
-            "The silence holds wisdom. Listen carefully.",
-            "A transformation is coming - embrace it.",
-            "Your kindness will ripple outward in ways you can't see.",
-            "The ordinary contains extraordinary secrets.",
-            "What you resist will persist. Let go and flow.",
-            "A door you thought closed is actually opening.",
-            "Your creativity will unlock a new dimension.",
-            "The answer is simpler than you believe.",
-            "Something beautiful is forming in the unseen."
+        // Message generation components
+        const timeframes = [
+            "Today", "Tomorrow", "This week", "Soon", "In the near future",
+            "Before the month ends", "Within the next few days", "When you least expect it"
         ];
+        
+        const subjects = [
+            "A wonderful opportunity", "Something unexpected", "A hidden blessing",
+            "An exciting adventure", "A chance encounter", "Good news from afar",
+            "A creative breakthrough", "A moment of clarity", "A stroke of luck",
+            "An unexpected gift", "A fresh beginning", "A powerful insight"
+        ];
+        
+        const actions = [
+            "is coming your way", "awaits you", "is unfolding for you",
+            "will reveal itself", "is just around the corner", "is heading toward you",
+            "will present itself", "is building within you", "is aligning in your favor"
+        ];
+        
+        const moods = [
+            "Feel the excitement!", "Trust the process.", "Stay open to miracles.",
+            "Your patience will be rewarded.", "Embrace the unknown.", 
+            "The universe is guiding you.", "Believe in the impossible.",
+            "Great things are in motion.", "Your dreams are waking up."
+        ];
+        
+        const emotionalStates = [
+            "joy", "wonder", "serenity", "anticipation", "excitement", 
+            "gratitude", "hope", "peace", "curiosity", "bliss"
+        ];
+        
+        const outcomes = [
+            "Everything falls into place perfectly.", 
+            "You find what you've been seeking.",
+            "A door you thought closed opens wide.",
+            "Your hard work pays off in a beautiful way.",
+            "Someone special enters your life.",
+            "You discover a new path forward.",
+            "The pieces of the puzzle connect.",
+            "A long-held wish begins to materialize.",
+            "Your world transforms in the best way.",
+            "You feel completely alive and inspired."
+        ];
+        
+        // Random number generator with seed for reproducibility
+        function seededRandom(seed) {
+            const x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+        }
+        
+        let seed = Date.now();
+        
+        function randomElement(arr) {
+            seed++;
+            return arr[Math.floor(seededRandom(seed) * arr.length)];
+        }
+        
+        // Generate a unique fortune message
+        function generateFortune() {
+            const template = Math.floor(seededRandom(seed++) * 5);
+            
+            switch(template) {
+                case 0:
+                    return `${randomElement(timeframes)}, ${randomElement(subjects).toLowerCase()} ${randomElement(actions)}. ${randomElement(moods)}`;
+                case 1:
+                    return `The ${randomElement(emotionalStates)} you seek is ${randomElement(timeframes).toLowerCase()} ${randomElement(actions)}. ${randomElement(moods)}`;
+                case 2:
+                    return `${randomElement(subjects)} ${randomElement(actions).replace('is', 'will be')}, and ${randomElement(outcomes)}`;
+                case 3:
+                    return `In ${randomElement(timeframes).toLowerCase()}, ${randomElement(outcomes).replace('.', '')} Your journey is guiding you toward something magnificent.`;
+                default:
+                    return `${randomElement(subjects)} ${randomElement(actions)}. ${randomElement(outcomes)} Trust that the universe is conspiring in your favor.`;
+            }
+        }
         
         const starsContainer = document.getElementById('stars');
         const particlesContainer = document.getElementById('particles');
@@ -305,8 +347,11 @@
             setTimeout(() => sparkle.remove(), 1000);
         }
         
-        // Click handler
+        // Click handler - generates new fortune on each click
         orbContainer.addEventListener('click', (e) => {
+            // Reset seed based on click time for new messages
+            seed = Date.now();
+            
             // Create sparkles
             const rect = orbContainer.getBoundingClientRect();
             for (let i = 0; i < 10; i++) {
@@ -317,15 +362,15 @@
                 }, i * 50);
             }
             
-            // Get random answer
-            const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+            // Generate new fortune
+            const fortune = generateFortune();
             
             // Fade out current answer
             answerEl.classList.remove('visible');
             
             // Show new answer after fade
             setTimeout(() => {
-                answerEl.textContent = randomAnswer;
+                answerEl.textContent = fortune;
                 answerEl.classList.add('visible');
             }, 400);
         });
