@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Magic Oracle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0f0f1a 50%, #050508 100%);
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: #d4af37;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            letter-spacing: 0.3em;
+        }
+        
+        .orb-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .orb-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .orb {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(100, 200, 255, 0.4) 0%, 
+                rgba(50, 100, 200, 0.2) 40%, 
+                rgba(20, 50, 100, 0.6) 70%,
+                rgba(10, 20, 50, 0.9) 100%);
+            box-shadow: 
+                0 0 60px rgba(100, 180, 255, 0.3),
+                0 0 100px rgba(100, 180, 255, 0.1),
+                inset 0 0 60px rgba(100, 180, 255, 0.2),
+                inset -20px -20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .orb::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            width: 30%;
+            height: 20%;
+            background: radial-gradient(ellipse, rgba(255,255,255,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: rotate(-30deg);
+        }
+        
+        .orb-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(100, 180, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(212, 175, 55, 0.8);
+            border-radius: 50%;
+            animation: particle-float 4s ease-in-out infinite;
+        }
+        
+        @keyframes particle-float {
+            0%, 100% { 
+                transform: translateY(0) scale(1); 
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-200px) scale(0); 
+                opacity: 0;
+            }
+        }
+        
+        .answer-container {
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .answer {
+            font-size: 1.4rem;
+            color: #e8e8e8;
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            max-width: 400px;
+            line-height: 1.6;
+        }
+        
+        .answer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .instruction {
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            animation: breathe 2s ease-in-out infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #fff 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s ease-out forwards;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: scale(0); opacity: 1; }
+            50% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <h1>THE ORACLE</h1>
+        
+        <div class="orb-container" id="orbContainer">
+            <div class="orb-glow"></div>
+            <div class="orb">
+                <div class="particles" id="particles"></div>
+            </div>
+        </div>
+        
+        <div class="answer-container">
+            <p class="answer" id="answer"></p>
+        </div>
+        
+        <p class="instruction">Click the orb to reveal your fate</p>
+    </div>
+
+    <script>
+        const answers = [
+            "The stars align in your favor. Something wonderful is coming your way.",
+            "A surprise awaits around the next corner. Keep your eyes open.",
+            "The universe has a plan for you greater than you can imagine.",
+            "Your next step will change everything. Trust your intuition.",
+            "Something you've been waiting for is closer than you think.",
+            "The answer you seek... is within yourself.",
+            "A mysterious stranger will bring an unexpected opportunity.",
+            "Your courage will be rewarded in the most surprising way.",
+            "The path less traveled leads to extraordinary destinations.",
+            "What you give away returns to you multiplied.",
+            "A dream you've forgotten holds the key to your future.",
+            "The best things in life are still to come.",
+            "Your words today will shape tomorrow's story.",
+            "Something old becomes new again in your life.",
+            "The universe is conspiring to help you succeed.",
+            "A chance meeting will alter your trajectory forever.",
+            "Your patience will be rewarded beyond expectations.",
+            "The magic you're seeking is already within you.",
+            "An adventure calls to you - will you answer?",
+            "Your next decision will lead to unexpected joy.",
+            "Something broken in your past is becoming whole.",
+            "The silence holds wisdom. Listen carefully.",
+            "A transformation is coming - embrace it.",
+            "Your kindness will ripple outward in ways you can't see.",
+            "The ordinary contains extraordinary secrets.",
+            "What you resist will persist. Let go and flow.",
+            "A door you thought closed is actually opening.",
+            "Your creativity will unlock a new dimension.",
+            "The answer is simpler than you believe.",
+            "Something beautiful is forming in the unseen."
+        ];
+        
+        const starsContainer = document.getElementById('stars');
+        const particlesContainer = document.getElementById('particles');
+        const orbContainer = document.getElementById('orbContainer');
+        const answerEl = document.getElementById('answer');
+        
+        // Create stars
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starsContainer.appendChild(star);
+        }
+        
+        // Create floating particles around orb
+        for (let i = 0; i < 8; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 4 + 's';
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Create sparkle effect
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+        
+        // Click handler
+        orbContainer.addEventListener('click', (e) => {
+            // Create sparkles
+            const rect = orbContainer.getBoundingClientRect();
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    const x = rect.left + Math.random() * rect.width;
+                    const y = rect.top + Math.random() * rect.height;
+                    createSparkle(x, y);
+                }, i * 50);
+            }
+            
+            // Get random answer
+            const randomAnswer = answers[Math.floor(Math.random() * answers.length)];
+            
+            // Fade out current answer
+            answerEl.classList.remove('visible');
+            
+            // Show new answer after fade
+            setTimeout(() => {
+                answerEl.textContent = randomAnswer;
+                answerEl.classList.add('visible');
+            }, 400);
+        });
+    </script>
+</body>
+</html>
