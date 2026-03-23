@@ -236,35 +236,107 @@
     </div>
 
     <script>
-        // Message generation components
+        // EXTREME VARIETY MESSAGE GENERATOR
+        // Each category has 50+ options for thousands of unique combinations
+        
         const timeframes = [
             "Today", "Tomorrow", "This week", "Soon", "In the near future",
-            "Before the month ends", "Within the next few days", "When you least expect it"
+            "Before the month ends", "Within the next few days", "When you least expect it",
+            "This afternoon", "Tonight", "By sunrise", "Before twilight",
+            "In the next hour", "Before the week is over", "Sometime soon",
+            "When the stars align", "During the next full moon", "Before spring arrives",
+            "When you stop searching", "The moment you relax", "When you finally let go",
+            "In the coming days", "Before summer fades", "When autumn comes",
+            "During a quiet moment", "When you least anticipate it", "As winter approaches",
+            "When you take the first step", "After you make a decision", "Before you hesitate",
+            "When opportunity knocks", "The instant you believe", "Once you trust yourself",
+            "After the storm passes", "When rainbow appears", "At the break of dawn",
+            "When silence speaks", "In the space between breaths", "During a moment of peace",
+            "When the clock strikes", "As the hour turns", "At the turning point",
+            "When you open your heart", "Once you release fear", "After you forgive",
+            "When gratitude flows", "As love enters", "When hope returns",
+            "The second you smile", "When laughter bubbles up", "As joy awakens",
+            "When dreams take flight", "Once imagination soars", "As creativity blooms"
         ];
         
         const subjects = [
             "A wonderful opportunity", "Something unexpected", "A hidden blessing",
             "An exciting adventure", "A chance encounter", "Good news from afar",
             "A creative breakthrough", "A moment of clarity", "A stroke of luck",
-            "An unexpected gift", "A fresh beginning", "A powerful insight"
+            "An unexpected gift", "A fresh beginning", "A powerful insight",
+            "A beautiful connection", "A joyful surprise", "A magical moment",
+            "A transformative experience", "An inspiring revelation", "A delightful discovery",
+            "A harmonious alignment", "A peaceful resolution", "A triumphant moment",
+            "A soul-stirring encounter", "A dream realized", "A wish granted",
+            "A serendipitous meeting", "A golden opportunity", "A radiant breakthrough",
+            "A healing revelation", "A liberating truth", "An empowering realization",
+            "A celestial gift", "A cosmic blessing", "A universal nudge",
+            "A gentle push in the right direction", "A whispered secret",
+            "A forgotten memory returning", "A new path emerging",
+            "A door swinging open", "A window of possibility",
+            "A bridge to your dreams", "A ladder to success",
+            "A spark of inspiration", "A flame of passion",
+            "A wave of transformation", "A tide of fortune",
+            "A wind of change", "A storm of clarity",
+            "A rainbow after rain", "A sunrise in darkness",
+            "A phoenix rising", "A butterfly emerging",
+            "A garden blooming", "A forest awakening",
+            "A mountain conquered", "A river flowing"
         ];
         
         const actions = [
             "is coming your way", "awaits you", "is unfolding for you",
             "will reveal itself", "is just around the corner", "is heading toward you",
-            "will present itself", "is building within you", "is aligning in your favor"
+            "will present itself", "is building within you", "is aligning in your favor",
+            "is waiting to be discovered", "is ready to emerge", "is calling your name",
+            "is dancing toward you", "is singing your song", "is painting your story",
+            "is weaving its magic", "is crafting your destiny", "is shaping your future",
+            "is blooming in the shadows", "is growing in the light", "is ripening for you",
+            "is knocking at your door", "is whispering in your ear", "is shouting your name",
+            "is flowing like a river", "is soaring like a bird", "is shining like a star",
+            "is glowing with possibility", "is pulsing with energy", "is vibrating with hope",
+            "is dancing in the moonlight", "is basking in the sunrise", "is resting in your heart",
+            "is awakening in your soul", "is stirring in your spirit", "is rising in your mind",
+            "is taking root in your life", "is branching out for you", "is flowering in your path",
+            "is clearing the fog", "is lighting the way", "is guiding your steps",
+            "is softening the edges", "is smoothing the path", "is opening the gates",
+            "is turning the key", "is unlocking the door", "is lifting the veil",
+            "is breaking through", "is rising above", "is soaring beyond",
+            "is expanding infinitely", "is contracting to perfection", "is finding its center"
         ];
         
         const moods = [
             "Feel the excitement!", "Trust the process.", "Stay open to miracles.",
             "Your patience will be rewarded.", "Embrace the unknown.", 
             "The universe is guiding you.", "Believe in the impossible.",
-            "Great things are in motion.", "Your dreams are waking up."
+            "Great things are in motion.", "Your dreams are waking up.",
+            "Let your heart lead.", "Follow your inner wisdom.", "Release all doubt.",
+            "Trust your intuition.", "Open to infinite possibilities.", "Breathe and receive.",
+            "The timing is perfect.", "Everything is aligning.", "You are ready.",
+            "This is your moment.", "Embrace the journey.", "Enjoy the ride.",
+            "Stay curious.", "Keep wondering.", "Never stop dreaming.",
+            "The best is yet to come.", "Wonderful things await.", "Magic is near.",
+            "Believe and receive.", "Ask and it is given.", "Seek and you will find.",
+            "Knock and the door opens.", "Trust the timing.", "Have faith.",
+            "Let miracles unfold.", "Allow the magic.", "Welcome the wonder.",
+            "Your path is clear.", "Your direction is set.", "Your destination awaits.",
+            "Embrace the adventure.", "Enjoy the discovery.", "Savor the moment.",
+            "Celebrate the journey.", "Treasure the experience.", "Cherish the memory.",
+            "The universe adores you.", "Stars are in your eyes.", "Light is in your path.",
+            "Hope springs eternal.", "Joy awaits you.", "Love surrounds you."
         ];
         
         const emotionalStates = [
             "joy", "wonder", "serenity", "anticipation", "excitement", 
-            "gratitude", "hope", "peace", "curiosity", "bliss"
+            "gratitude", "hope", "peace", "curiosity", "bliss",
+            "love", "warmth", "comfort", "contentment", "satisfaction",
+            "radiance", "glow", "brilliance", "magnificence", "splendor",
+            "tranquility", "calm", "stillness", "quiet", "silence",
+            "passion", "fire", "flame", "energy", "vitality",
+            "freedom", "lightness", "ease", "flow", "grace",
+            "wisdom", "clarity", "insight", "understanding", "awareness",
+            "courage", "strength", "power", "boldness", "fearlessness",
+            "creativity", "imagination", "inspiration", "innovation", "vision"
         ];
         
         const outcomes = [
@@ -277,7 +349,99 @@
             "The pieces of the puzzle connect.",
             "A long-held wish begins to materialize.",
             "Your world transforms in the best way.",
-            "You feel completely alive and inspired."
+            "You feel completely alive and inspired.",
+            "A weight lifts from your shoulders.",
+            "New doors swing open for you.",
+            "Your spirit soars to new heights.",
+            "You find peace in unexpected places.",
+            "Love finds its way to your heart.",
+            "Your creativity explodes with color.",
+            "Your voice finally gets heard.",
+            "Your true self emerges shining.",
+            "The recognition you deserve arrives.",
+            "Your efforts are seen and valued.",
+            "A beautiful friendship blossoms.",
+            "Your health flourishes completely.",
+            "Your finances flow abundantly.",
+            "Your relationships deepen beautifully.",
+            "Your career reaches new peaks.",
+            "Your dreams become your reality.",
+            "Your fears dissolve into nothing.",
+            "Your confidence grows unshakable.",
+            "Your purpose becomes crystal clear.",
+            "Your happiness knows no bounds.",
+            "Your love radiates to all around.",
+            "Your light shines brighter than ever.",
+            "Your path illuminates before you.",
+            "Your courage inspires others too.",
+            "Your kindness returns to you tenfold.",
+            "Your patience brings its reward.",
+            "Your faith is rewarded generously.",
+            "Your hope becomes tangible.",
+            "Your trust is well-placed.",
+            "Your journey leads to greatness.",
+            "Your story writes itself beautifully.",
+            "Your chapter begins anew today.",
+            "Your adventure starts right now.",
+            "Your miracle is on its way.",
+            "Your blessing is arriving soon.",
+            "Your fortune is changing forever.",
+            "Your luck is turning around.",
+            "Your stars are finally aligning.",
+            "Your universe is expanding."
+        ];
+        
+        const modifiers = [
+            "in ways you cannot yet imagine",
+            "beyond your wildest dreams",
+            "sooner than you think",
+            "exactly when you need it",
+            "in perfect divine timing",
+            "with perfect precision",
+            "in the most unexpected manner",
+            "through the gentlest path",
+            "with loving kindness",
+            "in miraculous ways",
+            "with infinite grace",
+            "through beautiful synchronicity",
+            "in the most perfect way",
+            "with amazing clarity",
+            "in extraordinary fashion",
+            "through the kindness of strangers",
+            "in the warmth of community",
+            "with the support of the universe",
+            "in the silence of your soul",
+            "through the wisdom within"
+        ];
+        
+        const connectors = [
+            "And", "But also", "Meanwhile", "Simultaneously", "Additionally",
+            "What's more", "Furthermore", "Even better", "Surprisingly", "Miraculously",
+            "Most importantly", "Above all", "Remember", "Know this", "Understand",
+            "Trust that", "Believe that", "Feel that", "Imagine", "Visualize"
+        ];
+        
+        const secondParts = [
+            "the universe is conspiring to support you.",
+            "your dreams are valid and possible.",
+            "you are exactly where you need to be.",
+            "the best version of your life is emerging.",
+            "something extraordinary is about to happen.",
+            "your next chapter will be your best yet.",
+            "the magic you've been seeking is already here.",
+            "your patience and faith are about to pay off.",
+            "the answers you've been waiting for arrive now.",
+            "your inner wisdom knows the way forward.",
+            "the people who matter are thinking of you.",
+            "opportunities are multiplying in your favor.",
+            "your positive energy is attracting miracles.",
+            "the universe is delivering your desires.",
+            "your courage is inspiring positive change.",
+            "beautiful things are gravitating toward you.",
+            "your light is attracting exactly what you need.",
+            "the cosmos is aligning for your success.",
+            "your authentic self is leading the way.",
+            "the divine timing is always perfect for you."
         ];
         
         // Random number generator with seed for reproducibility
@@ -293,9 +457,9 @@
             return arr[Math.floor(seededRandom(seed) * arr.length)];
         }
         
-        // Generate a unique fortune message
+        // Generate a unique fortune message with extreme variety
         function generateFortune() {
-            const template = Math.floor(seededRandom(seed++) * 5);
+            const template = Math.floor(seededRandom(seed++) * 10);
             
             switch(template) {
                 case 0:
@@ -306,6 +470,18 @@
                     return `${randomElement(subjects)} ${randomElement(actions).replace('is', 'will be')}, and ${randomElement(outcomes)}`;
                 case 3:
                     return `In ${randomElement(timeframes).toLowerCase()}, ${randomElement(outcomes).replace('.', '')} Your journey is guiding you toward something magnificent.`;
+                case 4:
+                    return `${randomElement(subjects)} ${randomElement(actions)} ${randomElement(modifiers)}. ${randomElement(moods)}`;
+                case 5:
+                    return `${randomElement(connectors)}, ${randomElement(secondParts)} ${randomElement(timeframes)}, ${randomElement(outcomes)}`;
+                case 6:
+                    return `When ${randomElement(timeframes).toLowerCase()} brings you ${randomElement(subjects).toLowerCase()}, know that ${randomElement(outcomes).toLowerCase()} ${randomElement(moods)}`;
+                case 7:
+                    return `The cosmos has heard your whispers. ${randomElement(timeframes)}, ${randomElement(subjects).toLowerCase()} ${randomElement(actions)} ${randomElement(modifiers)}.`;
+                case 8:
+                    return `Your ${randomElement(emotionalStates)} energy is attracting ${randomElement(subjects).toLowerCase()} ${randomElement(actions)}. ${randomElement(moods)}`;
+                case 9:
+                    return `${randomElement(timeframes)} marks the beginning of ${randomElement(outcomes).toLowerCase()} ${randomElement(moods)} And ${randomElement(subjects).toLowerCase()} ${randomElement(actions)}.`;
                 default:
                     return `${randomElement(subjects)} ${randomElement(actions)}. ${randomElement(outcomes)} Trust that the universe is conspiring in your favor.`;
             }
